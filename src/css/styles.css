@@ -1,5 +1,5 @@
 body {
-  background-color: rgb(255, 255, 156);
+  background-color: rgba(245, 245, 223, 0.961);
 }
 
 .search-form {
@@ -12,10 +12,25 @@ body {
 input[type='text'] {
   background-color: blue;
   color: white;
+  font-size: 30px;
+  border: none;
+  border-radius: 5px;
+  padding-left: 10px;
 }
 
 input[type='text']::placeholder {
   color: white;
+  padding-left: 10px;
+}
+
+button[type='submit'] {
+  margin-left: 50px;
+  font-size: 30px;
+  text-transform: uppercase;
+  background-color: rgb(176, 236, 176);
+
+  border-radius: 7px;
+  border: none;
 }
 
 .load-more {
@@ -32,21 +47,25 @@ input:focus {
 }
 
 .gallery {
+  padding-top: 100px;
   width: 1980px;
   display: flex;
   flex-wrap: wrap;
-  gap: 30px;
+  gap: 100px;
   margin-left: auto;
   margin-right: auto;
 }
 
 .info {
-  background-color: rgba(236, 236, 182, 0.438);
+  background-color: rgba(233, 245, 195, 0.428);
+  display: flex;
+  gap: 5px;
 }
 
 .photo-card {
   width: 400px;
   height: 400px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .photo-card img {
@@ -54,18 +73,27 @@ input:focus {
   max-height: 100%;
 }
 
-.info {
-  display: flex;
-}
-
 .info-name {
   display: flex;
   flex-direction: column;
-  padding-left: 20px;
   text-transform: uppercase;
+  padding-left: 10px;
+  padding-right: 10px;
 }
 
 .info-value {
   text-align: center;
   font-weight: 400;
+}
+
+.load-more {
+  background-color: blue;
+  color: white;
+  font-size: 30px;
+  margin-bottom: 50px;
+  margin-top: 50px;
+  text-transform: uppercase;
+  border: none;
+  border-radius: 7px;
+  padding: 10px;
 }

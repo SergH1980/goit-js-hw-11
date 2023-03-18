@@ -1,4 +1,7 @@
 import './css/styles.css';
+import SimpleLightbox from 'simplelightbox';
+import 'simplelightbox/dist/simple-lightbox.min.css';
+
 import Notiflix from 'notiflix';
 import axios from 'axios';
 import { fetchImages } from './js/fetchImages';
@@ -23,7 +26,7 @@ refs.loadMoreButton.addEventListener(`click`, onLoadMoreButton);
 
 let searchValue = ``;
 let searchResult = ``;
-let page = 12;
+let page = 1;
 let perPage = 40;
 
 function onSubmitButton(event) {
@@ -35,7 +38,7 @@ function onSubmitButton(event) {
     return;
   }
 
-  // page = 1;
+  page = 1;
 
   searchResult = searchValue;
 
