@@ -2,6 +2,10 @@ body {
   background-color: rgba(245, 245, 223, 0.961);
 }
 
+a {
+  text-decoration: none;
+}
+
 .search-form {
   background-color: rgb(120, 203, 239);
   padding-top: 30px;
@@ -10,8 +14,8 @@ body {
 }
 
 input[type='text'] {
-  background-color: blue;
-  color: white;
+  background-color: gainsboro;
+  color: black;
   font-size: 30px;
   border: none;
   border-radius: 5px;
@@ -19,18 +23,19 @@ input[type='text'] {
 }
 
 input[type='text']::placeholder {
-  color: white;
-  padding-left: 10px;
+  color: black;
 }
 
 button[type='submit'] {
   margin-left: 50px;
   font-size: 30px;
+  color: white;
   text-transform: uppercase;
-  background-color: rgb(176, 236, 176);
+  background-color: rgb(22, 114, 22);
 
   border-radius: 7px;
   border: none;
+  padding: 10px;
 }
 
 .load-more {
@@ -79,6 +84,7 @@ input:focus {
   text-transform: uppercase;
   padding-left: 10px;
   padding-right: 10px;
+  color: black;
 }
 
 .info-value {
@@ -87,7 +93,7 @@ input:focus {
 }
 
 .load-more {
-  background-color: blue;
+  background-color: rgb(22, 114, 22);
   color: white;
   font-size: 30px;
   margin-bottom: 50px;

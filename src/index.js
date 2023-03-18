@@ -5,6 +5,7 @@ import 'simplelightbox/dist/simple-lightbox.min.css';
 import Notiflix from 'notiflix';
 import axios from 'axios';
 import { fetchImages } from './js/fetchImages';
+import { loadMoreImages } from './js/loadMoreImages';
 
 const refs = {
   form: document.querySelector(`.search-form`),
@@ -34,32 +35,37 @@ function onSubmitButton(event) {
   refs.loadMoreButton.style.visibility = 'hidden';
   searchValue = event.target.elements.searchQuery.value.trim();
 
-  if (!searchValue || searchResult === searchValue) {
+  if (!searchValue) {
+    return (refs.gallery.innerHTML = ``);
+  } else if (searchResult === searchValue) {
     return;
   }
-
   page = 1;
 
   searchResult = searchValue;
 
   fetchImages(searchValue, perPage, page)
     .then(result => {
-      if (result.length > 0) {
+      if (result.length === perPage) {
         refs.loadMoreButton.style.visibility = 'visible';
       }
       imageMarkup(result);
+      let gallery = new SimpleLightbox('.gallery a');
     })
     .catch(error => console.log(error));
 }
 
 function onLoadMoreButton(event) {
   page += 1;
-  fetchImages(searchValue, perPage, page)
+
+  loadMoreImages(searchValue, perPage, page)
     .then(result => {
-      if (result.length < perPage || page === 13) {
+      if (result.length < perPage) {
         refs.loadMoreButton.style.visibility = 'hidden';
       }
       imageMarkup(result);
+      let gallery = new SimpleLightbox('.gallery a');
+      gallery.refresh();
       window.scrollTo(0, 0);
     })
     .catch(error => console.log(error));
@@ -70,14 +76,14 @@ function imageMarkup(data) {
     .map(
       ({
         webformatURL,
-        // largeImageURL,
+        largeImageURL,
         tags,
         likes,
         views,
         comments,
         downloads,
       }) => {
-        return `<div class="photo-card">
+        return `<a href="${largeImageURL}"><div class="photo-card">
         <img src="${webformatURL}" alt="${tags}" loading="lazy" width="400px" height="320px"/>
   <div class="info">
     <p class="info-item">
@@ -93,7 +99,7 @@ function imageMarkup(data) {
       <b class="info-name">Downloads <span class="info-value">${downloads}</span></b>
     </p>
   </div>
-</div>`;
+</div></a>`;
       }
     )
     .join(``);
