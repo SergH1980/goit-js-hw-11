@@ -22,18 +22,20 @@ export async function fetchImages(searchValue, perPage, page) {
   try {
     const response = await axios.request(fetchConfig);
     let totalResult = response.data.totalHits;
+    let resultArray = {};
+    let errorInput = ``;
 
     if (totalResult === 0) {
       Notiflix.Notify.failure(
         'Sorry, there are no images matching your search query. Please try again.'
       );
-      return;
+      return errorInput;
     }
     let totalHits = response.data.totalHits;
 
     Notiflix.Notify.info(`Hooray! We found ${totalHits} images.`);
 
-    let resultArray = response.data.hits;
+    resultArray = response.data.hits;
 
     if (response.data.hits.length < fetchConfig.params.per_page) {
       Notiflix.Notify.warning(

@@ -29,6 +29,7 @@ let searchValue = ``;
 let searchResult = ``;
 let page = 1;
 let perPage = 40;
+let errorInput = ``;
 
 function onSubmitButton(event) {
   event.preventDefault();
@@ -37,11 +38,15 @@ function onSubmitButton(event) {
 
   if (!searchValue) {
     refs.loadMoreButton.style.visibility = 'hidden';
-    return (refs.gallery.innerHTML = ``);
+    refs.gallery.innerHTML = ``;
+    return;
+  } else if (errorInput === 1) {
+    refs.loadMoreButton.style.visibility = 'hidden';
   } else if (searchResult === searchValue) {
     refs.loadMoreButton.style.visibility = 'visible';
     return;
   }
+
   page = 1;
 
   searchResult = searchValue;
@@ -51,7 +56,7 @@ function onSubmitButton(event) {
       if (result.length === perPage) {
         refs.loadMoreButton.style.visibility = 'visible';
       }
-      imageMarkup(result);
+      const imageMarkupResult = imageMarkup(result);
       let gallery = new SimpleLightbox('.gallery a');
     })
     .catch(error => console.log(error));
@@ -74,6 +79,13 @@ function onLoadMoreButton(event) {
 }
 
 function imageMarkup(data) {
+  if (data === ``) {
+    errorInput = 1;
+    return errorInput;
+  }
+  errorInput = 0;
+
+  console.log(data);
   const singleImage = data
     .map(
       ({
