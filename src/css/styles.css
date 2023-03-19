@@ -59,6 +59,7 @@ input:focus {
   gap: 100px;
   margin-left: auto;
   margin-right: auto;
+  justify-content: center;
 }
 
 .info {

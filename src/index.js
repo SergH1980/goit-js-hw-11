@@ -38,6 +38,7 @@ function onSubmitButton(event) {
   if (!searchValue) {
     return (refs.gallery.innerHTML = ``);
   } else if (searchResult === searchValue) {
+    refs.loadMoreButton.style.visibility = 'visible';
     return;
   }
   page = 1;
