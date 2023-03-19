@@ -29,9 +29,6 @@ export async function fetchImages(searchValue, perPage, page) {
       );
       return;
     }
-    // console.log(response);
-    // console.log(response.data.totalHits);
-    // console.log(fetchConfig.params.per_page);
     let totalHits = response.data.totalHits;
 
     Notiflix.Notify.info(`Hooray! We found ${totalHits} images.`);

@@ -36,6 +36,7 @@ function onSubmitButton(event) {
   searchValue = event.target.elements.searchQuery.value.trim();
 
   if (!searchValue) {
+    refs.loadMoreButton.style.visibility = 'hidden';
     return (refs.gallery.innerHTML = ``);
   } else if (searchResult === searchValue) {
     refs.loadMoreButton.style.visibility = 'visible';
