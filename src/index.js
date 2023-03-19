@@ -80,6 +80,7 @@ function onLoadMoreButton(event) {
 
 function imageMarkup(data) {
   if (data === ``) {
+    refs.gallery.innerHTML = ``;
     errorInput = 1;
     return errorInput;
   }
